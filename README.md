@@ -1,37 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Ecommerce Dashboard
 
-## Getting Started
+Um painel administrativo moderno, responsivo e escalável para gerenciamento de lojas virtuais. Este projeto foi desenvolvido com foco em **usabilidade**, **performance** e **design adaptável**, permitindo que administradores tenham controle total sobre os produtos e operações do ecommerce — seja em desktops ou dispositivos móveis.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📸 Preview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://user-images.githubusercontent.com/674621/191327859-b1c95d59-609b-447e-82c1-60e8fdb79a40.png" alt="Ecommerce Dashboard Preview" width="100%" />
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> *Imagem meramente ilustrativa. Substitua por screenshots reais do seu projeto quando estiver pronto.*
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Funcionalidades
 
-To learn more about Next.js, take a look at the following resources:
+- 📦 **Gerenciamento de Produtos**  
+  Visualize e gerencie produtos com ID, nome e preço em tempo real.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📁 **Sidebar Responsiva**  
+  - Estilo drawer no mobile, com botão de menu.
+  - Sidebar fixa no desktop com deslocamento do conteúdo usando `md:ms-58`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 📱 **Design Responsivo**  
+  Desenvolvido com **Tailwind CSS** para adaptar-se automaticamente a diferentes dispositivos e tamanhos de tela.
 
-## Deploy on Vercel
+- 🧭 **Navegação Intuitiva**  
+  Interface clara, minimalista e objetiva.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ⚙️ **Componentes Reutilizáveis**  
+  Criado com arquitetura baseada em componentes usando **React + TypeScript**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Dashboard
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- ⚛️ [React](https://reactjs.org/)
+- 🔥 [Next.js](https://nextjs.org/)
+- 🟦 [TypeScript](https://www.typescriptlang.org/)
+- 💨 [Tailwind CSS](https://tailwindcss.com/)
+- 🎨 [Lucide Icons](https://lucide.dev/)
+
+---
+
+## 📁 Estrutura do Projeto
+
