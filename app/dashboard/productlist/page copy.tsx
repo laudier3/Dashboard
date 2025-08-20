@@ -46,16 +46,11 @@ export default function ProductListPage() {
   return (
     <ProductsPageLayout>
       <ProductList products={products} onEdit={setEditingProduct} />
-
-      {editingProduct && (
-        <div className="mt-6">
-          <ProductForm
-            product={editingProduct}
-            onSubmit={handleSave}
-            onCancel={() => setEditingProduct(null)}
-          />
-        </div>
-      )}
+      <ProductForm
+        product={editingProduct || undefined}
+        onSubmit={handleSave}
+        onCancel={() => setEditingProduct(null)}
+      />
     </ProductsPageLayout>
   )
 }
