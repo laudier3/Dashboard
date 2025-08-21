@@ -11,6 +11,7 @@ import {
   UserPlus,
   ShoppingCart,
   TrendingUp,
+  Activity
 } from 'lucide-react'
 import {
   LineChart,
@@ -37,7 +38,7 @@ const chartData = [
   { name: 'Ago', sales: 1100 },
   { name: 'Set', sales: 1700 },
   { name: 'Otu', sales: 2300 },
-  { name: 'Nov', sales: 300 },
+  { name: 'Nov', sales: 3000 },
 ]
 
 // Usuários ativos
@@ -121,6 +122,11 @@ export default function Dashboard() {
               title="Taxa de Conversão"
               value="4.7%"
               icon={<TrendingUp className="text-green-600" size={20} />}
+            />
+             <StatCard
+              title="Taxa de Probabilidade"
+              value="8.7%"
+              icon={<Activity className="text-blue-300" size={20} />}
             />
           </section>
 
