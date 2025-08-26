@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import ProductsPageLayout from '@/app/components/ProductsPageLayout'
-import ProductList from '@/app/components/ProductList'
-import ProductForm from '@/app/components/ProductForm'
+import ProductsPageLayout from '@/app/(private)/components/ProductsPageLayout'
+import ProductList from '@/app/(private)/components/ProductList'
+import ProductForm from '@/app/(private)/components/ProductForm'
 import { Product } from '@/app/types'
 
 const initialProducts: Product[] = [

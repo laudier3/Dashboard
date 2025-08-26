@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Sidebar from '@/app/components/Sidebar'
+import Sidebar from '@/app/(private)/components/Sidebar'
 import { Menu } from 'lucide-react'
 import {
   LineChart,

@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { Product } from '@/app/types'
-import ProductList from '@/app/components/ProductList'
-import ProductForm from '@/app/components/ProductForm'
+import ProductList from '@/app/(private)/components/ProductList'
+import ProductForm from '@/app/(private)/components/ProductForm'
 
 const initialProducts: Product[] = [
   { id: 1, name: 'Produto A', price: 49.99 },

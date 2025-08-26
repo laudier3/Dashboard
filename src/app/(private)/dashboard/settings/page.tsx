@@ -1,4 +1,4 @@
-import UserProfileManager from '@/app/components/UserProfileManager'
+import UserProfileManager from '@/app/(private)/components/UserProfileManager'
 
 export default function SettingsPage() {
   return (

@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import Sidebar from '@/app/components/Sidebar'
+import Sidebar from '@/app/(private)/components/Sidebar'
 
 interface ProductsPageLayoutProps {
   children: ReactNode
