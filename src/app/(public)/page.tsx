@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   Chart as ChartJS,
@@ -9,12 +9,12 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-
 import { Line } from 'react-chartjs-2';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
-// ✅ REGISTRO DAS ESCALAS E ELEMENTOS (precisa estar fora do componente!)
+// ✅ Registro das escalas e elementos
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,7 +23,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 
 const metrics = [
   { title: 'Vendas Totais', value: '1.240', icon: '📈' },
@@ -50,9 +49,19 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const [current, setCurrent] = useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [loadingButton, setLoadingButton] = useState<string | null>(null);
+
+  const handleClickButton = async (buttonId: string, action: () => void) => {
+    setLoadingButton(buttonId);
+    await new Promise(r => setTimeout(r, 500)); // simula delay
+    action();
+    setLoadingButton(null);
+  };
+
   return (
     <div className="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+      {/* Header */}
       <header className="sticky top-0 bg-white shadow-md z-10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-extrabold text-indigo-600">DevCommerce</h1>
@@ -60,19 +69,30 @@ export default function Home() {
             <Link
               href="/login"
               className="px-4 py-2 rounded text-indigo-600 border border-indigo-600 hover:bg-indigo-50 transition flex items-center justify-center"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClickButton('login', () => window.location.href = '/login');
+              }}
             >
+              {loadingButton === 'login' ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : null}
               Login
             </Link>
             <Link
               href="/register"
               className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center justify-center"
+              onClick={(e) => {
+                e.preventDefault();
+                handleClickButton('register', () => window.location.href = '/register');
+              }}
             >
+              {loadingButton === 'register' ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : null}
               Cadastro
             </Link>
           </nav>
         </div>
       </header>
 
+      {/* Main */}
       <main className="flex-1">
         {/* Hero + Métricas */}
         <section className="py-16">
@@ -85,8 +105,22 @@ export default function Home() {
                 Cadastre seus produtos, acompanhe métricas-chave, visualize gráficos de desempenho, gerencie clientes e maximize seu faturamento com clareza.
               </p>
               <div className="flex gap-4 mt-6">
-                <Link href="/dashboard" className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition">Acessar Dashboard</Link>
-                <Link href="/register" className="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-indigo-50 transition">Criar Conta</Link>
+                <button
+                  className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition flex items-center justify-center"
+                  onClick={() => handleClickButton('dashboard', () => window.location.href = '/dashboard')}
+                  disabled={loadingButton === 'dashboard'}
+                >
+                  {loadingButton === 'dashboard' && <Loader2 className="animate-spin w-5 h-5 mr-2" />}
+                  Acessar Dashboard
+                </button>
+                <button
+                  className="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-indigo-50 transition flex items-center justify-center"
+                  onClick={() => handleClickButton('createAccount', () => window.location.href = '/register')}
+                  disabled={loadingButton === 'createAccount'}
+                >
+                  {loadingButton === 'createAccount' && <Loader2 className="animate-spin w-5 h-5 mr-2" />}
+                  Criar Conta
+                </button>
               </div>
             </div>
             <div>
@@ -125,17 +159,23 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900">O que nossos usuários dizem</h2>
             <div className="space-y-4">
               <blockquote className="text-lg italic text-gray-700">
-                “{testimonials[current].quote}”
+                “{testimonials[currentTestimonial].quote}”
               </blockquote>
-              <p className="font-semibold">{testimonials[current].name}, <span className="text-gray-500">{testimonials[current].role}</span></p>
+              <p className="font-semibold">
+                {testimonials[currentTestimonial].name}, 
+                <span className="text-gray-500"> {testimonials[currentTestimonial].role}</span>
+              </p>
             </div>
             <div className="flex justify-center space-x-2">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrent(idx)}
-                  className={`w-3 h-3 rounded-full ${idx === current ? 'bg-indigo-600' : 'bg-gray-400'}`}
-                />
+                  onClick={() => handleClickButton(`testimonial-${idx}`, () => setCurrentTestimonial(idx))}
+                  className={`w-3 h-3 rounded-full ${idx === currentTestimonial ? 'bg-indigo-600' : 'bg-gray-400'}`}
+                  disabled={loadingButton === `testimonial-${idx}`}
+                >
+                  {loadingButton === `testimonial-${idx}` && <Loader2 className="animate-spin w-3 h-3" />}
+                </button>
               ))}
             </div>
           </div>
@@ -153,5 +193,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  );
+  )
 }

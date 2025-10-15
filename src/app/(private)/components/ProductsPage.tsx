@@ -27,7 +27,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="ml-4 md:ml-65">
       <ProductList products={products} onEdit={setEditingProduct} />
       <ProductForm
         product={editingProduct || undefined}

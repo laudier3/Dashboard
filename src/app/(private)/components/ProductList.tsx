@@ -9,11 +9,11 @@ interface ProductListProps {
 
 export default function ProductList({ products, onEdit }: ProductListProps) {
   return (
-    <div>
+    <div className='ml-0 md:ml-65'>
       <h2 className="text-xl font-semibold mb-4">Lista de Produtos</h2>
       <table className="w-full border-collapse border border-gray-300">
         <thead>
-          <tr>
+          <tr className="bg-gray-600">
             <th className="border p-2">ID</th>
             <th className="border p-2">Imagem</th>
             <th className="border p-2">Nome</th>

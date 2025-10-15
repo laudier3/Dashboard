@@ -64,7 +64,7 @@ export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex min-h-screen bg-[#f9fafb] md:ms-60">
+    <div className="ml-0 md:ml-65 flex min-h-screen bg-[#f9fafb]">
       {/* Sidebar */}
       <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 

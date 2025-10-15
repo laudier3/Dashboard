@@ -30,7 +30,7 @@ export default function ProductsPage() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex min-h-screen md:ms-58">
+    <div className="ml-0 md:ml-65">
       <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
       <div className="flex-1 flex flex-col">

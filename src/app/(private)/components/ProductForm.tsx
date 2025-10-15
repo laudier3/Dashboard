@@ -79,7 +79,7 @@ export default function ProductForm({ product, onSubmit, onCancel }: ProductForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border p-4 mt-4 rounded">
+    <form onSubmit={handleSubmit} className="ml-4 md:ml-65 border p-4 mt-4 rounded">
       <div>
         <label>Nome:</label>
         <input className="border p-1 w-full" value={name} onChange={e => setName(e.target.value)} required />
