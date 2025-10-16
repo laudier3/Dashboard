@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { User2, Mail, Phone, MapPin, FileText, Save, Loader2 } from 'lucide-react'
-import Cookies from 'js-cookie'
+import { User2, Mail, Phone, MapPin, FileText, Loader2 } from 'lucide-react'
 import { api } from '@/app/lib/api'
 
 interface User {
@@ -23,28 +22,23 @@ export default function UserProfileManager() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
+  // 🔹 Busca o usuário autenticado via cookie HttpOnly
   useEffect(() => {
     const fetchUser = async () => {
       setLoading(true)
       setError('')
+      setSuccess('')
 
       try {
-        // 🔹 Pega token do localStorage (ou cookie não HttpOnly)
-        const token = localStorage.getItem('token')
-        if (!token) {
-          setError('Token não encontrado. Faça login novamente.')
-          setLoading(false)
-          return
-        }
-
-        const { data } = await api.get('/user/me', {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        })
+        const { data } = await api.get('/user/me') // cookie HttpOnly é enviado automaticamente
         setUser(data)
       } catch (err: any) {
-        console.error('Erro ao buscar usuário:', err)
-        setError('Erro ao carregar dados do usuário.')
+        console.error('Erro ao buscar usuário:', err.response?.data || err.message)
+        if (err.response?.status === 401) {
+          setError('Token não encontrado ou inválido. Faça login novamente.')
+        } else {
+          setError('Erro ao carregar dados do usuário.')
+        }
       } finally {
         setLoading(false)
       }
@@ -65,23 +59,18 @@ export default function UserProfileManager() {
     setSuccess('')
 
     try {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        setError('Token não encontrado.')
-        setSaving(false)
-        return
-      }
-
-      const { data } = await api.put('/user', user, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-      })
+      // PUT com cookie HttpOnly
+      const { data } = await api.put('/user', user)
       setUser(data)
       setSuccess('Usuário atualizado com sucesso!')
       setEditing(false)
     } catch (err: any) {
-      console.error('Erro ao salvar usuário:', err)
-      setError('Erro ao salvar usuário.')
+      console.error('Erro ao salvar usuário:', err.response?.data || err.message)
+      if (err.response?.status === 401) {
+        setError('Token inválido ou expirado. Faça login novamente.')
+      } else {
+        setError('Erro ao salvar usuário.')
+      }
     } finally {
       setSaving(false)
     }
